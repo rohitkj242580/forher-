@@ -2,906 +2,371 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Just For You 🌸</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>I'm Sorry 🌷</title>
 <style>
-  :root {
-    --rose: #e8547a;
-    --rose-light: #f7c5d2;
-    --rose-pale: #fdf0f3;
-    --rose-deep: #c23060;
-    --cream: #fdf6f0;
-    --warm: #f9e8d0;
-    --text: #3a1a24;
-    --text-soft: #8a5060;
-    --white: #ffffff;
+  :root{
+    --pink: #ffb5c5;
+    --deep-pink: #ff7aa2;
+    --cream: #fff7f3;
+    --lavender: #d9c8f5;
+    --text: #5b3b4d;
   }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--cream), var(--pink) 60%, var(--lavender));
+    background-size: 400% 400%;
+    animation: bgshift 18s ease infinite;
     color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow-x:hidden;
+    padding: 20px;
+  }
+  @keyframes bgshift{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
   }
 
-  /* ---- floating petals bg ---- */
-  .petal-bg {
-    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+  .hearts{
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    pointer-events:none;
+    z-index:0;
   }
-  .fp {
-    position: absolute;
-    font-size: 20px;
-    opacity: 0;
-    animation: fallingPetal linear infinite;
+  .heart{
+    position:absolute;
+    bottom:-50px;
+    font-size: 22px;
+    opacity:0.8;
+    animation: floatUp linear infinite;
+    user-select:none;
   }
-  @keyframes fallingPetal {
-    0%   { transform: translateY(-40px) rotate(0deg); opacity: 0; }
-    10%  { opacity: 0.6; }
-    90%  { opacity: 0.4; }
-    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  @keyframes floatUp{
+    0%{ transform: translateY(0) rotate(0deg); opacity:0.9;}
+    100%{ transform: translateY(-110vh) rotate(360deg); opacity:0;}
   }
 
-  /* ---- nav ---- */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(253,246,240,0.85);
-    backdrop-filter: blur(12px);
-    padding: 14px 32px;
-    display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid var(--rose-light);
+  .card{
+    position:relative;
+    z-index:1;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
+    border-radius: 28px;
+    max-width: 560px;
+    width:100%;
+    padding: 36px 32px 28px;
+    box-shadow: 0 20px 50px rgba(255,122,162,0.35);
+    text-align:center;
+    transition: transform 0.4s ease;
   }
-  nav .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px; color: var(--rose-deep);
-  }
-  nav .nav-links { display: flex; gap: 24px; }
-  nav a {
-    text-decoration: none; font-size: 13px; font-weight: 500;
-    color: var(--text-soft); transition: color 0.2s;
-  }
-  nav a:hover { color: var(--rose); }
 
-  /* ---- hero ---- */
-  .hero {
-    position: relative; z-index: 1;
-    min-height: 92vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 80px 24px 60px;
-    background: radial-gradient(ellipse at 60% 40%, #f9d4e0 0%, #fdf0f3 40%, var(--cream) 70%);
+  h1{
+    font-size: 1.9rem;
+    margin: 0 0 6px;
+    color: var(--deep-pink);
   }
-  .hero-badge {
-    display: inline-block;
-    background: var(--rose-light); color: var(--rose-deep);
-    font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
-    padding: 6px 16px; border-radius: 100px;
-    margin-bottom: 28px;
-    text-transform: uppercase;
+  .subtitle{
+    font-size:0.95rem;
+    opacity:0.75;
+    margin-bottom: 18px;
   }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 7vw, 72px);
-    line-height: 1.1;
+
+  .bear{
+    font-size: 70px;
+    display:inline-block;
+    animation: wiggle 2.4s ease-in-out infinite;
+  }
+  @keyframes wiggle{
+    0%,100%{ transform: rotate(-4deg);}
+    50%{ transform: rotate(4deg);}
+  }
+
+  #screen1, #screen2, #screen3{
+    transition: opacity 0.4s ease;
+  }
+  .hidden{
+    display:none;
+  }
+
+  .letter{
+    text-align:left;
+    background: #fffaf6;
+    border: 1px dashed var(--deep-pink);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin: 16px 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+
+  button{
+    background: var(--deep-pink);
+    color:white;
+    border:none;
+    padding: 12px 26px;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor:pointer;
+    margin: 6px 8px;
+    box-shadow: 0 6px 14px rgba(255,122,162,0.4);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  button:hover{
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 10px 18px rgba(255,122,162,0.5);
+  }
+  button:active{
+    transform: translateY(0) scale(0.97);
+  }
+
+  .secondary{
+    background: transparent;
+    color: var(--deep-pink);
+    border: 2px solid var(--deep-pink);
+    box-shadow:none;
+  }
+
+  .quiz-options{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top: 16px;
+  }
+  .quiz-options button{
+    width:100%;
+    background: var(--lavender);
     color: var(--text);
-    margin-bottom: 20px;
-    max-width: 700px;
+    box-shadow:none;
   }
-  .hero h1 em { color: var(--rose); font-style: italic; }
-  .hero p {
-    font-size: 17px; line-height: 1.75;
-    color: var(--text-soft); max-width: 480px; margin-bottom: 40px;
-  }
-  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
-  .btn-primary {
-    background: var(--rose); color: #fff;
-    border: none; padding: 14px 32px;
-    border-radius: 100px; font-size: 15px; font-weight: 500;
-    cursor: pointer; transition: background 0.2s, transform 0.15s;
-    text-decoration: none; display: inline-block;
-  }
-  .btn-primary:hover { background: var(--rose-deep); transform: translateY(-2px); }
-  .btn-outline {
-    background: transparent; color: var(--rose-deep);
-    border: 1.5px solid var(--rose-light); padding: 14px 32px;
-    border-radius: 100px; font-size: 15px; font-weight: 500;
-    cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block;
-  }
-  .btn-outline:hover { background: var(--rose-pale); transform: translateY(-2px); }
-  .hero-img {
-    margin-top: 60px;
-    font-size: 80px;
-    animation: floatHero 4s ease-in-out infinite;
-    display: block;
-  }
-  @keyframes floatHero {
-    0%,100%{transform:translateY(0) rotate(-3deg)}
-    50%{transform:translateY(-18px) rotate(3deg)}
+  .quiz-options button:hover{
+    background: var(--deep-pink);
+    color:white;
   }
 
-  /* ---- sections shared ---- */
-  section {
-    position: relative; z-index: 1;
-    padding: 80px 24px;
-    max-width: 1100px; margin: 0 auto;
-  }
-  .section-label {
-    font-size: 11px; letter-spacing: 0.14em; font-weight: 500;
-    text-transform: uppercase; color: var(--rose);
-    margin-bottom: 12px;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 4vw, 44px);
-    line-height: 1.2; margin-bottom: 12px;
-  }
-  .section-sub {
-    font-size: 15px; color: var(--text-soft);
-    line-height: 1.7; max-width: 520px; margin-bottom: 48px;
-  }
-
-  /* ---- affirmation ---- */
-  #affirmation-section {
-    background: linear-gradient(135deg, #fbdde8 0%, #fdf0f3 60%, #f9e8d0 100%);
-    border-radius: 32px;
-    padding: 60px 40px;
-    text-align: center;
-    margin: 0 24px 60px;
-    max-width: 900px;
-    margin-left: auto; margin-right: auto;
-  }
-  .affirmation-quote {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(20px, 3vw, 32px);
+  .feedback{
+    margin-top:10px;
+    font-size:0.9rem;
+    min-height: 20px;
     font-style: italic;
-    color: var(--text);
-    line-height: 1.5;
-    min-height: 100px;
-    display: flex; align-items: center; justify-content: center;
-    transition: opacity 0.4s, transform 0.4s;
-    margin-bottom: 28px;
-    padding: 0 16px;
-  }
-  .affirmation-quote.fade { opacity: 0; transform: translateY(10px); }
-
-  /* ---- self care cards ---- */
-  .care-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
-  }
-  .care-card {
-    background: var(--white);
-    border: 1px solid var(--rose-light);
-    border-radius: 20px;
-    padding: 28px 24px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: default;
-  }
-  .care-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(232,84,122,0.12);
-  }
-  .care-card .icon { font-size: 36px; margin-bottom: 16px; display: block; }
-  .care-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px; margin-bottom: 10px; color: var(--rose-deep);
-  }
-  .care-card ul { list-style: none; padding: 0; }
-  .care-card ul li {
-    font-size: 13.5px; color: var(--text-soft);
-    padding: 5px 0; border-bottom: 1px solid #fce4ec;
-    display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
-  }
-  .care-card ul li:last-child { border-bottom: none; }
-  .care-card ul li::before { content: '🌸'; font-size: 11px; margin-top: 3px; flex-shrink: 0; }
-
-  /* ---- comfort foods ---- */
-  .foods-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 16px;
-  }
-  .food-card {
-    background: var(--white);
-    border: 1px solid var(--rose-light);
-    border-radius: 20px;
-    padding: 24px 16px;
-    text-align: center;
-    transition: transform 0.2s;
-  }
-  .food-card:hover { transform: translateY(-4px); }
-  .food-card .food-emoji { font-size: 44px; display: block; margin-bottom: 10px; }
-  .food-card h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 15px; color: var(--text); margin-bottom: 4px;
-  }
-  .food-card p { font-size: 12px; color: var(--text-soft); line-height: 1.5; }
-
-  /* ---- mood playlist ---- */
-  .playlist-wrap {
-    background: var(--white);
-    border: 1px solid var(--rose-light);
-    border-radius: 24px;
-    overflow: hidden;
-  }
-  .playlist-header {
-    background: linear-gradient(135deg, var(--rose) 0%, #e8547a 100%);
-    padding: 28px 32px;
-    color: white;
-  }
-  .playlist-header h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px; margin-bottom: 4px;
-  }
-  .playlist-header p { font-size: 13px; opacity: 0.85; }
-  .song-item {
-    display: flex; align-items: center; gap: 16px;
-    padding: 16px 32px;
-    border-bottom: 1px solid #fce4ec;
-    transition: background 0.2s; cursor: pointer;
-  }
-  .song-item:last-child { border-bottom: none; }
-  .song-item:hover { background: var(--rose-pale); }
-  .song-num {
-    font-size: 12px; color: var(--rose-light);
-    width: 20px; text-align: center; font-weight: 500;
-    flex-shrink: 0;
-  }
-  .song-item:hover .song-num { display: none; }
-  .song-play { display: none; font-size: 14px; color: var(--rose); width: 20px; flex-shrink: 0; }
-  .song-item:hover .song-play { display: block; }
-  .song-info { flex: 1; }
-  .song-info .title { font-size: 14px; font-weight: 500; color: var(--text); }
-  .song-info .artist { font-size: 12px; color: var(--text-soft); }
-  .song-mood { font-size: 11px; padding: 3px 10px; border-radius: 100px;
-    background: var(--rose-pale); color: var(--rose-deep); font-weight: 500; }
-
-  /* ---- hug section ---- */
-  #hug-section {
-    background: radial-gradient(ellipse at center, #fce4ec 0%, var(--cream) 70%);
-    border-radius: 32px;
-    padding: 60px 24px;
-    text-align: center;
-    margin: 0 0 60px;
-  }
-  #hug-section h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(24px, 4vw, 40px);
-    margin-bottom: 12px;
-  }
-  #hug-section p { color: var(--text-soft); font-size: 15px; margin-bottom: 36px; }
-  .hug-btn {
-    font-size: 72px; background: none; border: none;
-    cursor: pointer; transition: transform 0.15s;
-    display: block; margin: 0 auto 20px; filter: drop-shadow(0 4px 12px rgba(232,84,122,0.2));
-  }
-  .hug-btn:hover { transform: scale(1.15); }
-  .hug-btn:active { transform: scale(0.95); }
-  .hug-msg {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px; color: var(--rose-deep);
-    font-style: italic; min-height: 32px;
-    transition: opacity 0.3s;
-  }
-  .hug-counter {
-    font-size: 13px; color: var(--text-soft); margin-top: 8px;
+    color: var(--deep-pink);
   }
 
-  /* ---- timer ---- */
-  .timer-wrap {
-    background: var(--white); border: 1px solid var(--rose-light);
-    border-radius: 24px; padding: 40px 32px; text-align: center;
-    max-width: 480px;
-  }
-  .timer-display {
-    font-family: 'Playfair Display', serif;
-    font-size: 56px; color: var(--rose);
-    margin: 24px 0; letter-spacing: 2px;
-  }
-  .timer-label { font-size: 13px; color: var(--text-soft); margin-bottom: 28px; }
-  .timer-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .timer-preset {
-    background: var(--rose-pale); color: var(--rose-deep);
-    border: 1px solid var(--rose-light); padding: 8px 20px;
-    border-radius: 100px; font-size: 13px; cursor: pointer;
-    transition: all 0.2s;
-  }
-  .timer-preset:hover { background: var(--rose-light); }
-  .timer-preset.active { background: var(--rose); color: white; border-color: var(--rose); }
-  .timer-controls { display: flex; gap: 12px; justify-content: center; margin-top: 20px; }
-  .t-btn {
-    background: var(--rose); color: white; border: none;
-    padding: 12px 28px; border-radius: 100px;
-    font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s;
-  }
-  .t-btn:hover { background: var(--rose-deep); }
-  .t-btn.outline {
-    background: transparent; color: var(--rose-deep);
-    border: 1.5px solid var(--rose-light);
-  }
-  .t-btn.outline:hover { background: var(--rose-pale); }
-
-  /* ---- journal ---- */
-  .journal-wrap {
-    background: var(--white); border: 1px solid var(--rose-light);
-    border-radius: 24px; padding: 40px 32px;
-    max-width: 600px;
-  }
-  .journal-prompt {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px; color: var(--rose-deep);
-    font-style: italic; margin-bottom: 20px;
-    padding-bottom: 16px; border-bottom: 1px dashed var(--rose-light);
-  }
-  .journal-wrap textarea {
-    width: 100%; border: 1.5px solid var(--rose-light);
-    border-radius: 12px; padding: 16px; font-family: 'DM Sans', sans-serif;
-    font-size: 14px; line-height: 1.7; color: var(--text);
-    background: var(--rose-pale); resize: vertical; min-height: 140px;
-    outline: none; transition: border-color 0.2s;
-  }
-  .journal-wrap textarea:focus { border-color: var(--rose); }
-  .journal-wrap textarea::placeholder { color: var(--text-soft); }
-  .journal-actions { display: flex; gap: 10px; margin-top: 14px; align-items: center; }
-  .char-count { font-size: 12px; color: var(--text-soft); flex: 1; }
-
-  /* ---- breathing ---- */
-  .breath-circle-wrap {
-    display: flex; justify-content: center; align-items: center;
-    flex-direction: column; gap: 20px; padding: 20px 0;
-  }
-  .breath-ring {
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #f9d4e0 30%, #e8547a 100%);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 15px; color: white;
-    cursor: pointer; transition: transform 0.1s;
-    box-shadow: 0 0 0 0 rgba(232,84,122,0.4);
-    position: relative;
-  }
-  @keyframes breatheIn {
-    0%   { transform: scale(1);    box-shadow: 0 0 0 0 rgba(232,84,122,0.3); }
-    50%  { transform: scale(1.4);  box-shadow: 0 0 0 40px rgba(232,84,122,0.05); }
-    100% { transform: scale(1.4);  box-shadow: 0 0 0 40px rgba(232,84,122,0.05); }
-  }
-  @keyframes breatheOut {
-    0%   { transform: scale(1.4);  }
-    100% { transform: scale(1);    }
-  }
-  .breath-ring.inhaling  { animation: breatheIn  4s ease-in-out forwards; }
-  .breath-ring.exhaling  { animation: breatheOut 4s ease-in-out forwards; }
-  #breath-label { font-size: 14px; color: var(--text-soft); }
-  #breath-count { font-size: 12px; color: var(--rose); font-weight: 500; }
-
-  /* ---- footer ---- */
-  footer {
-    position: relative; z-index: 1;
-    background: linear-gradient(135deg, #fbdde8 0%, #fdf0f3 100%);
-    text-align: center; padding: 48px 24px;
-    border-top: 1px solid var(--rose-light);
-  }
-  footer h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px; color: var(--rose-deep); margin-bottom: 8px;
-  }
-  footer p { color: var(--text-soft); font-size: 14px; line-height: 1.7; }
-
-  /* ---- hearts canvas ---- */
-  #hearts { position: fixed; inset: 0; pointer-events: none; z-index: 9999; }
-
-  /* ---- progress bar ---- */
-  .progress-wrap {
-    background: var(--rose-pale); border: 1px solid var(--rose-light);
-    border-radius: 24px; padding: 32px 28px; max-width: 560px;
-  }
-  .progress-item { margin-bottom: 20px; }
-  .progress-item:last-child { margin-bottom: 0; }
-  .progress-label {
-    display: flex; justify-content: space-between;
-    font-size: 13px; font-weight: 500; color: var(--text);
-    margin-bottom: 8px;
-  }
-  .progress-bar {
-    height: 8px; background: var(--rose-light);
-    border-radius: 100px; overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%; background: var(--rose);
-    border-radius: 100px; width: 0;
-    transition: width 1.5s cubic-bezier(0.4,0,0.2,1);
+  .progress{
+    font-size:0.8rem;
+    opacity:0.6;
+    margin-bottom: 6px;
   }
 
-  /* ---- responsive ---- */
-  @media(max-width:600px){
-    nav .nav-links { display: none; }
-    #affirmation-section { padding: 40px 20px; margin: 0 12px; }
-    .care-grid { grid-template-columns: 1fr; }
-    section { padding: 48px 16px; }
-    .timer-wrap, .journal-wrap { padding: 28px 20px; }
+  #noBtn{
+    transition: transform 0.15s ease;
   }
 
-  /* ---- scroll reveal ---- */
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s, transform 0.7s; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .final-emoji{
+    font-size: 60px;
+    animation: pop 0.5s ease;
+  }
+  @keyframes pop{
+    0%{ transform: scale(0); }
+    70%{ transform: scale(1.2); }
+    100%{ transform: scale(1); }
+  }
+
+  .confetti{
+    position: fixed;
+    width: 10px; height: 10px;
+    top: -10px;
+    border-radius: 2px;
+    z-index: 5;
+    animation: fall linear forwards;
+  }
+  @keyframes fall{
+    to{ transform: translateY(110vh) rotate(720deg); opacity: 0.6; }
+  }
+
+  textarea{
+    width:100%;
+    border-radius:12px;
+    border:1px solid var(--lavender);
+    padding:10px;
+    font-family:inherit;
+    resize:none;
+    min-height: 70px;
+  }
+
+  small{
+    display:block;
+    margin-top:18px;
+    opacity:0.5;
+    font-size:0.75rem;
+  }
 </style>
 </head>
 <body>
 
-<!-- floating petals -->
-<div class="petal-bg" id="petals"></div>
+<div class="hearts" id="hearts"></div>
 
-<!-- hearts canvas -->
-<canvas id="hearts"></canvas>
+<div class="card" id="card">
 
-<!-- nav -->
-<nav>
-  <span class="logo">🌸 Just For You</span>
-  <div class="nav-links">
-    <a href="#self-care">Self Care</a>
-    <a href="#foods">Comfort Foods</a>
-    <a href="#playlist">Playlist</a>
-    <a href="#breathing">Breathe</a>
-    <a href="#journal">Journal</a>
+  <!-- SCREEN 1: the letter -->
+  <div id="screen1">
+    <div class="bear">🐻</div>
+    <h1>I'm really sorry.</h1>
+    <div class="subtitle">I made you something instead of just saying it.</div>
+    <div class="letter" id="letterText">Hey you,
+
+I know I messed up, and I know words alone don't always fix things — but I needed you to know that I see it, I'm sorry, and I'm not okay with you being hurt because of me.
+
+You mean a lot to me, more than I show sometimes. I'm working on being better — more thoughtful, more present, less careless.
+
+Can we talk this through? I'd really like to make it right.
+
+— Me 💛</div>
+    <button onclick="goTo(2)">Keep going →</button>
   </div>
-</nav>
 
-<!-- hero -->
-<div class="hero">
-  <div class="hero-badge">Made with love, just for you 💗</div>
-  <h1>Hey beautiful,<br>you're doing <em>amazing</em></h1>
-  <p>Your body is working hard right now. Here's your little corner of warmth, comfort, and care. You deserve all of this and more.</p>
-  <div class="hero-btns">
-    <a href="#affirmation" class="btn-primary">Get a hug 🤗</a>
-    <a href="#self-care" class="btn-outline">Self-care ideas</a>
+  <!-- SCREEN 2: tiny quiz -->
+  <div id="screen2" class="hidden">
+    <h1>Quick quiz 🧐</h1>
+    <div class="progress" id="progress">Question 1 of 3</div>
+    <div id="quizBox"></div>
+    <div class="feedback" id="quizFeedback"></div>
   </div>
-  <span class="hero-img">🌺</span>
+
+  <!-- SCREEN 3: final ask -->
+  <div id="screen3" class="hidden">
+    <div class="final-emoji">🌹</div>
+    <h1>Will you forgive me?</h1>
+    <div class="subtitle">No pressure. Just hoping. 🥺</div>
+    <div>
+      <button id="yesBtn" onclick="sayYes()">Yes, I forgive you 💕</button>
+      <button id="noBtn" class="secondary" onclick="dodgeNo()">Not yet</button>
+    </div>
+    <div id="afterYes" class="hidden">
+      <p style="margin-top:18px;">Thank you. I won't take it for granted. 🤍</p>
+      <textarea id="noteBack" placeholder="(optional) write something back to me..."></textarea>
+    </div>
+  </div>
+
+  <small>made with care, css, and a little bit of panic</small>
 </div>
-
-<!-- affirmation -->
-<div id="affirmation" style="position:relative;z-index:1;padding:0 0 20px;">
-  <div id="affirmation-section">
-    <div class="section-label">✨ Daily affirmations</div>
-    <div class="affirmation-quote" id="aff-text">"You are worthy of all the warmth and rest you need."</div>
-    <button class="btn-primary" onclick="nextAffirmation()">New affirmation 💫</button>
-  </div>
-</div>
-
-<!-- self care -->
-<section id="self-care">
-  <div class="section-label">Take care of yourself</div>
-  <h2 class="section-title">Cozy Self-Care Ideas</h2>
-  <p class="section-sub">Little rituals that make a big difference when your body needs extra love.</p>
-  <div class="care-grid reveal">
-    <div class="care-card">
-      <span class="icon">🛁</span>
-      <h3>Physical Comfort</h3>
-      <ul>
-        <li>Warm heating pad on your belly</li>
-        <li>Long Epsom salt bath</li>
-        <li>Softest, loosest clothes only</li>
-        <li>Gentle yoga — child's pose & cat-cow</li>
-        <li>Light walk for natural endorphins</li>
-      </ul>
-    </div>
-    <div class="care-card">
-      <span class="icon">🍵</span>
-      <h3>Warm Drinks</h3>
-      <ul>
-        <li>Ginger tea — reduces cramps</li>
-        <li>Chamomile — calms the nervous system</li>
-        <li>Cinnamon tea — eases pain naturally</li>
-        <li>Warm golden milk with turmeric</li>
-        <li>Hot chocolate with oat milk</li>
-      </ul>
-    </div>
-    <div class="care-card">
-      <span class="icon">🎬</span>
-      <h3>Rest & Entertainment</h3>
-      <ul>
-        <li>Feel-good movie marathon</li>
-        <li>Comfort show re-runs</li>
-        <li>A good book + blanket burrito</li>
-        <li>Lo-fi music playlist</li>
-        <li>No guilt about doing nothing</li>
-      </ul>
-    </div>
-    <div class="care-card">
-      <span class="icon">💆</span>
-      <h3>Mental Care</h3>
-      <ul>
-        <li>Journaling your feelings freely</li>
-        <li>Face mask + skincare ritual</li>
-        <li>Breathe deeply & rest fully</li>
-        <li>Step away from social media</li>
-        <li>Ask for hugs freely 💗</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- how you're doing tracker -->
-<section style="padding-top:0">
-  <div class="section-label">How are you feeling?</div>
-  <h2 class="section-title">Your Wellness Check-in</h2>
-  <p class="section-sub">Tap how you're feeling today to track your energy and mood.</p>
-  <div class="progress-wrap reveal" id="wellness-wrap">
-    <div class="progress-item">
-      <div class="progress-label"><span>😴 Energy</span><span id="e-val">5/10</span></div>
-      <div class="progress-bar"><div class="progress-fill" id="e-fill" style="width:50%"></div></div>
-      <input type="range" min="1" max="10" value="5" style="width:100%;margin-top:8px;accent-color:var(--rose)" oninput="updateBar('e',this.value)">
-    </div>
-    <div class="progress-item">
-      <div class="progress-label"><span>💗 Mood</span><span id="m-val">6/10</span></div>
-      <div class="progress-bar"><div class="progress-fill" id="m-fill" style="width:60%"></div></div>
-      <input type="range" min="1" max="10" value="6" style="width:100%;margin-top:8px;accent-color:var(--rose)" oninput="updateBar('m',this.value)">
-    </div>
-    <div class="progress-item">
-      <div class="progress-label"><span>🤕 Cramp level</span><span id="c-val">4/10</span></div>
-      <div class="progress-bar"><div class="progress-fill" id="c-fill" style="width:40%;background:#e8547a99"></div></div>
-      <input type="range" min="1" max="10" value="4" style="width:100%;margin-top:8px;accent-color:var(--rose)" oninput="updateBar('c',this.value)">
-    </div>
-  </div>
-</section>
-
-<!-- comfort foods -->
-<section id="foods">
-  <div class="section-label">Nourish your body</div>
-  <h2 class="section-title">Comfort Foods That Help</h2>
-  <p class="section-sub">These actually help with cramps, mood, and energy — not just taste amazing.</p>
-  <div class="foods-grid reveal">
-    <div class="food-card"><span class="food-emoji">🍫</span><h4>Dark Chocolate</h4><p>Magnesium boosts mood and eases cramps naturally</p></div>
-    <div class="food-card"><span class="food-emoji">🍌</span><h4>Banana</h4><p>Potassium reduces bloating and fatigue</p></div>
-    <div class="food-card"><span class="food-emoji">🥣</span><h4>Oatmeal</h4><p>Warm, filling and stabilizes blood sugar</p></div>
-    <div class="food-card"><span class="food-emoji">🥑</span><h4>Avocado</h4><p>Healthy fats reduce inflammation</p></div>
-    <div class="food-card"><span class="food-emoji">🍲</span><h4>Warm Soup</h4><p>Hydrating and deeply comforting on rough days</p></div>
-    <div class="food-card"><span class="food-emoji">🍓</span><h4>Berries</h4><p>Antioxidants fight inflammation and boost mood</p></div>
-    <div class="food-card"><span class="food-emoji">🥜</span><h4>Nuts & Seeds</h4><p>Omega-3s reduce cramp severity</p></div>
-    <div class="food-card"><span class="food-emoji">🫚</span><h4>Ginger</h4><p>As effective as ibuprofen for cramp pain</p></div>
-  </div>
-</section>
-
-<!-- playlist -->
-<section id="playlist">
-  <div class="section-label">Feel-good music</div>
-  <h2 class="section-title">Your Comfort Playlist</h2>
-  <p class="section-sub">Songs that feel like a warm blanket for your soul.</p>
-  <div class="playlist-wrap reveal">
-    <div class="playlist-header">
-      <h3>🎵 Warm & Cozy Vibes</h3>
-      <p>12 songs · ~44 minutes</p>
-    </div>
-    <div id="playlist-items"></div>
-  </div>
-</section>
-
-<!-- breathing -->
-<section id="breathing">
-  <div class="section-label">Calm your body</div>
-  <h2 class="section-title">Breathing Exercise</h2>
-  <p class="section-sub">4-4 box breathing — clinically proven to reduce pain and anxiety.</p>
-  <div class="breath-circle-wrap">
-    <div class="breath-ring" id="breath-ring" onclick="startBreathing()">
-      <span id="breath-inner">Tap to start</span>
-    </div>
-    <div id="breath-label">Click the circle to begin</div>
-    <div id="breath-count"></div>
-  </div>
-</section>
-
-<!-- timer -->
-<section style="padding-top:0">
-  <div class="section-label">Rest timer</div>
-  <h2 class="section-title">Heating Pad Timer</h2>
-  <p class="section-sub">Set a timer so you don't forget your heating pad is on.</p>
-  <div class="timer-wrap reveal">
-    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap" id="presets">
-      <button class="timer-preset active" onclick="setTimer(10,'10 min')">10 min</button>
-      <button class="timer-preset" onclick="setTimer(15,'15 min')">15 min</button>
-      <button class="timer-preset" onclick="setTimer(20,'20 min')">20 min</button>
-      <button class="timer-preset" onclick="setTimer(30,'30 min')">30 min</button>
-    </div>
-    <div class="timer-display" id="timer-display">10:00</div>
-    <div class="timer-label" id="timer-label">Tap start when your heating pad is on 🌡️</div>
-    <div class="timer-controls">
-      <button class="t-btn" id="timer-start-btn" onclick="startTimer()">Start</button>
-      <button class="t-btn outline" onclick="resetTimer()">Reset</button>
-    </div>
-  </div>
-</section>
-
-<!-- hug -->
-<section>
-  <div id="hug-section">
-    <div class="section-label">Virtual comfort</div>
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,40px);margin-bottom:12px">Need a hug? 🤗</h2>
-    <p style="color:var(--text-soft);font-size:15px;margin-bottom:36px">Tap as many times as you need. There's no limit on love.</p>
-    <button class="hug-btn" onclick="sendHug()" title="Send a virtual hug">🤗</button>
-    <div class="hug-msg" id="hug-msg">Tap for a virtual hug!</div>
-    <div class="hug-counter" id="hug-counter"></div>
-  </div>
-</section>
-
-<!-- journal -->
-<section id="journal">
-  <div class="section-label">Let it out</div>
-  <h2 class="section-title">Your Private Journal</h2>
-  <p class="section-sub">Write freely. No judgement. Just you and your thoughts.</p>
-  <div class="journal-wrap reveal">
-    <div class="journal-prompt" id="journal-prompt">"What's one small thing that made you smile today?"</div>
-    <textarea id="journal-text" placeholder="Start writing... your words are safe here 🌸" oninput="updateCharCount()"></textarea>
-    <div class="journal-actions">
-      <span class="char-count" id="char-count">0 characters</span>
-      <button class="t-btn outline" onclick="newPrompt()">New prompt</button>
-      <button class="t-btn" onclick="saveEntry()">Save 💾</button>
-    </div>
-    <div id="saved-entries" style="margin-top:20px"></div>
-  </div>
-</section>
-
-<!-- footer -->
-<footer>
-  <h3>You are loved, always 💗</h3>
-  <p>Rest well. Drink your tea. Be gentle with yourself.<br>You're doing better than you think. 🌸</p>
-  <div style="margin-top:24px;font-size:20px;letter-spacing:8px">🌸 💗 ✨ 🌺 💖</div>
-</footer>
 
 <script>
-// --- petals ---
-const petalEl = ['🌸','🌺','✨','💗','🌷','💕'];
-const petalBg = document.getElementById('petals');
-for(let i=0;i<14;i++){
-  const p = document.createElement('span');
-  p.className='fp';
-  p.textContent = petalEl[i%petalEl.length];
-  p.style.left = (Math.random()*100)+'%';
-  p.style.animationDelay = (Math.random()*8)+'s';
-  p.style.animationDuration = (6+Math.random()*6)+'s';
-  p.style.fontSize = (14+Math.random()*14)+'px';
-  petalBg.appendChild(p);
+// floating hearts background
+const heartsContainer = document.getElementById('hearts');
+const heartEmojis = ['💗','💕','🌸','💖','🌷'];
+for(let i=0;i<22;i++){
+  const h = document.createElement('div');
+  h.className='heart';
+  h.textContent = heartEmojis[Math.floor(Math.random()*heartEmojis.length)];
+  h.style.left = Math.random()*100+'vw';
+  h.style.animationDuration = (8+Math.random()*10)+'s';
+  h.style.animationDelay = (Math.random()*10)+'s';
+  h.style.fontSize = (16+Math.random()*16)+'px';
+  heartsContainer.appendChild(h);
 }
 
-// --- affirmations ---
-const affs = [
-  '"You are worthy of all the warmth and rest you need."',
-  '"Your strength is beautiful, even on the hard days."',
-  '"You deserve every comfort, every kindness, every hug."',
-  '"This too shall pass — and you will bloom again."',
-  '"You are loved more deeply than words can say."',
-  '"Even on your worst days, you are more than enough."',
-  '"Rest is productive. Taking care of yourself is brave."',
-  '"You light up every room, even when you feel dim."',
-  '"You are seen, cherished, and so deeply adored."',
-  '"Be as gentle with yourself as you are with others."',
-  '"Your body is working hard — honour it with rest."',
-  '"You deserve warmth, softness, and all good things."',
-];
-let affIdx = 0;
-function nextAffirmation(){
-  const el = document.getElementById('aff-text');
-  el.classList.add('fade');
-  setTimeout(()=>{
-    affIdx = (affIdx+1)%affs.length;
-    el.textContent = affs[affIdx];
-    el.classList.remove('fade');
-  },400);
+function goTo(n){
+  document.getElementById('screen1').classList.add('hidden');
+  document.getElementById('screen2').classList.add('hidden');
+  document.getElementById('screen3').classList.add('hidden');
+  document.getElementById('screen'+n).classList.remove('hidden');
+  if(n===2) startQuiz();
 }
 
-// --- wellness bars ---
-function updateBar(key, val){
-  document.getElementById(key+'-fill').style.width = (val*10)+'%';
-  document.getElementById(key+'-val').textContent = val+'/10';
-}
-
-// --- playlist ---
-const songs = [
-  {title:'Treat You Better', artist:'Shawn Mendes', mood:'💕 Sweet'},
-  {title:'Better Place', artist:'Rachel Platten', mood:'✨ Uplifting'},
-  {title:'You Are The Reason', artist:'Calum Scott', mood:'💗 Loving'},
-  {title:'Flowers', artist:'Miley Cyrus', mood:'🌸 Empowering'},
-  {title:'Lovely Day', artist:'Bill Withers', mood:'☀️ Happy'},
-  {title:"Don't You Worry Child", artist:'Swedish House Mafia', mood:'🌟 Hope'},
-  {title:'A Thousand Years', artist:'Christina Perri', mood:'💖 Romantic'},
-  {title:'Here Comes the Sun', artist:'The Beatles', mood:'🌞 Peaceful'},
-  {title:'Golden Hour', artist:'JVKE', mood:'✨ Dreamy'},
-  {title:'Everywhere', artist:'Fleetwood Mac', mood:'🎵 Cozy'},
-  {title:'Fast Car', artist:'Tracy Chapman', mood:'🌿 Calm'},
-  {title:'Landslide', artist:'Fleetwood Mac', mood:'💭 Reflective'},
-];
-const pl = document.getElementById('playlist-items');
-songs.forEach((s,i)=>{
-  pl.innerHTML += `<div class="song-item">
-    <span class="song-num">${i+1}</span>
-    <span class="song-play">▶</span>
-    <div class="song-info">
-      <div class="title">${s.title}</div>
-      <div class="artist">${s.artist}</div>
-    </div>
-    <span class="song-mood">${s.mood}</span>
-  </div>`;
-});
-
-// --- breathing ---
-let breathRunning = false, breathPhase = 'idle', breathCycles = 0;
-let breathTimer = null;
-function startBreathing(){
-  if(breathRunning){
-    breathRunning=false; clearTimeout(breathTimer);
-    const ring = document.getElementById('breath-ring');
-    ring.className='breath-ring';
-    document.getElementById('breath-inner').textContent='Tap to start';
-    document.getElementById('breath-label').textContent='Click the circle to begin';
-    document.getElementById('breath-count').textContent='';
-    breathCycles=0; return;
+// tiny playful quiz about "us" — generic enough, can be edited
+const questions = [
+  {
+    q: "How sorry am I, really?",
+    options: ["A little", "Pretty sorry", "Extremely, deeply sorry"],
+    correct: 2,
+    feedback: "Correct. Extremely. Deeply. 😅"
+  },
+  {
+    q: "What do I want most right now?",
+    options: ["To be right", "To talk it out with you", "To avoid the topic"],
+    correct: 1,
+    feedback: "Yes — just to talk, for real."
+  },
+  {
+    q: "What happens after this quiz?",
+    options: ["Nothing, the end", "I keep trying to do better", "I forget about it"],
+    correct: 1,
+    feedback: "That's the plan. I keep trying."
   }
-  breathRunning=true; breathCycles=0;
-  runBreath('inhale');
+];
+let qIndex = 0;
+
+function startQuiz(){
+  qIndex = 0;
+  renderQuestion();
 }
-function runBreath(phase){
-  if(!breathRunning) return;
-  const ring = document.getElementById('breath-ring');
-  const inner = document.getElementById('breath-inner');
-  const lbl = document.getElementById('breath-label');
-  const cnt = document.getElementById('breath-count');
-  if(phase==='inhale'){
-    ring.className='breath-ring inhaling';
-    inner.textContent='Breathe in...';
-    lbl.textContent='Inhale slowly through your nose';
-    breathTimer = setTimeout(()=>runBreath('hold'),4000);
-  } else if(phase==='hold'){
-    ring.className='breath-ring';
-    inner.textContent='Hold...';
-    lbl.textContent='Hold gently';
-    breathTimer = setTimeout(()=>runBreath('exhale'),4000);
+
+function renderQuestion(){
+  const box = document.getElementById('quizBox');
+  const progress = document.getElementById('progress');
+  document.getElementById('quizFeedback').textContent = '';
+  if(qIndex >= questions.length){
+    progress.textContent = '';
+    box.innerHTML = '<p>All done. 🌟</p><button onclick="goTo(3)">Continue →</button>';
+    return;
+  }
+  progress.textContent = `Question ${qIndex+1} of ${questions.length}`;
+  const q = questions[qIndex];
+  box.innerHTML = `<p style="font-weight:600;margin-bottom:6px;">${q.q}</p>
+    <div class="quiz-options">
+      ${q.options.map((opt,i)=>`<button onclick="answer(${i})">${opt}</button>`).join('')}
+    </div>`;
+}
+
+function answer(i){
+  const q = questions[qIndex];
+  const fb = document.getElementById('quizFeedback');
+  if(i === q.correct){
+    fb.textContent = q.feedback;
+    qIndex++;
+    setTimeout(renderQuestion, 900);
   } else {
-    ring.className='breath-ring exhaling';
-    inner.textContent='Breathe out...';
-    lbl.textContent='Exhale slowly through your mouth';
-    breathCycles++;
-    cnt.textContent='Cycle '+breathCycles+' complete 🌸';
-    breathTimer = setTimeout(()=>runBreath('inhale'),4000);
+    fb.textContent = "Hmm, try again? 🙂";
   }
 }
 
-// --- timer ---
-let timerSeconds=600, timerRunning=false, timerInterval=null, timerTotal=600;
-function setTimer(mins, label){
-  resetTimer();
-  timerSeconds=mins*60; timerTotal=mins*60;
-  updateTimerDisplay();
-  document.querySelectorAll('.timer-preset').forEach(b=>b.classList.remove('active'));
-  event.target.classList.add('active');
-}
-function updateTimerDisplay(){
-  const m=Math.floor(timerSeconds/60), s=timerSeconds%60;
-  document.getElementById('timer-display').textContent = String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
-}
-function startTimer(){
-  if(timerRunning){ clearInterval(timerInterval); timerRunning=false; document.getElementById('timer-start-btn').textContent='Resume'; return; }
-  timerRunning=true; document.getElementById('timer-start-btn').textContent='Pause';
-  timerInterval = setInterval(()=>{
-    timerSeconds--;
-    updateTimerDisplay();
-    if(timerSeconds<=0){
-      clearInterval(timerInterval); timerRunning=false;
-      document.getElementById('timer-label').textContent='✅ Done! Time to take off that heating pad 🌸';
-      document.getElementById('timer-start-btn').textContent='Start';
-      spawnHearts(20);
-    }
-  },1000);
-}
-function resetTimer(){
-  clearInterval(timerInterval); timerRunning=false;
-  timerSeconds=timerTotal; updateTimerDisplay();
-  document.getElementById('timer-start-btn').textContent='Start';
-  document.getElementById('timer-label').textContent='Tap start when your heating pad is on 🌡️';
+// "not yet" button dodges the cursor a little, playfully
+function dodgeNo(){
+  const btn = document.getElementById('noBtn');
+  const x = (Math.random()-0.5)*160;
+  const y = (Math.random()-0.5)*60;
+  btn.style.transform = `translate(${x}px, ${y}px)`;
+  setTimeout(()=>{ btn.style.transform = 'translate(0,0)'; }, 600);
 }
 
-// --- hug ---
-let hugCount=0;
-const hugMsgs=['Sending you the biggest, warmest hug 🤗','Another hug, just for you 💗','You deserve a million of these 🌸','Wrapped in warmth and love ✨','Hug '+0+' and counting... no limit on love 💖'];
-function sendHug(){
-  hugCount++;
-  const msgs=['Sending you the biggest, warmest hug 🤗','Another hug, just for you 💗','You deserve a million of these 🌸','Wrapped in warmth and love ✨','Hug '+hugCount+' and counting... no limit on love 💖'];
-  const el=document.getElementById('hug-msg');
-  el.style.opacity=0;
-  setTimeout(()=>{ el.textContent=msgs[Math.min(hugCount-1,msgs.length-1)]; el.style.opacity=1; },200);
-  document.getElementById('hug-counter').textContent = hugCount>1 ? hugCount+' hugs sent today 💗' : '';
-  spawnHearts(12);
+function sayYes(){
+  document.getElementById('afterYes').classList.remove('hidden');
+  document.getElementById('yesBtn').style.display = 'none';
+  document.getElementById('noBtn').style.display = 'none';
+  launchConfetti();
 }
 
-// --- hearts canvas ---
-const canvas=document.getElementById('hearts');
-const ctx=canvas.getContext('2d');
-canvas.width=window.innerWidth; canvas.height=window.innerHeight;
-window.addEventListener('resize',()=>{ canvas.width=window.innerWidth; canvas.height=window.innerHeight; });
-let hearts=[];
-function spawnHearts(n){
-  const emojis=['❤️','💗','💖','🌸','✨','💕','🌺'];
-  for(let i=0;i<n;i++){
-    hearts.push({
-      x: window.innerWidth*0.2 + Math.random()*window.innerWidth*0.6,
-      y: window.innerHeight*0.5 + Math.random()*window.innerHeight*0.2,
-      vy: -(2+Math.random()*3),
-      vx: (Math.random()-0.5)*2,
-      alpha: 1,
-      size: 20+Math.random()*20,
-      emoji: emojis[Math.floor(Math.random()*emojis.length)],
-      delay: Math.random()*600,
-    });
+function launchConfetti(){
+  const colors = ['#ff7aa2','#ffb5c5','#d9c8f5','#fff1a8','#a8e6cf'];
+  for(let i=0;i<60;i++){
+    const c = document.createElement('div');
+    c.className='confetti';
+    c.style.left = Math.random()*100+'vw';
+    c.style.background = colors[Math.floor(Math.random()*colors.length)];
+    c.style.animationDuration = (2+Math.random()*2)+'s';
+    c.style.animationDelay = (Math.random()*0.5)+'s';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(), 5000);
   }
-  requestAnimationFrame(animHearts);
 }
-function animHearts(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  hearts = hearts.filter(h=>h.alpha>0);
-  hearts.forEach(h=>{
-    h.y+=h.vy; h.x+=h.vx; h.alpha-=0.015;
-    ctx.globalAlpha=Math.max(0,h.alpha);
-    ctx.font=h.size+'px serif';
-    ctx.fillText(h.emoji,h.x,h.y);
-  });
-  ctx.globalAlpha=1;
-  if(hearts.length>0) requestAnimationFrame(animHearts);
-}
-
-// --- journal ---
-const journalPrompts=[
-  '"What\'s one small thing that made you smile today?"',
-  '"Describe your perfect cozy day from start to finish."',
-  '"Write a kind letter to your body for everything it does."',
-  '"What are three things you\'re grateful for right now?"',
-  '"What would you tell your best friend if she felt this way?"',
-  '"What does rest mean to you? Are you giving yourself enough?"',
-  '"List 5 things that make you uniquely, beautifully you."',
-];
-let pIdx=0;
-function newPrompt(){
-  pIdx=(pIdx+1)%journalPrompts.length;
-  document.getElementById('journal-prompt').textContent=journalPrompts[pIdx];
-}
-function updateCharCount(){
-  const len=document.getElementById('journal-text').value.length;
-  document.getElementById('char-count').textContent=len+' character'+(len===1?'':'s');
-}
-let entries=[];
-function saveEntry(){
-  const text=document.getElementById('journal-text').value.trim();
-  if(!text) return;
-  entries.unshift({text, date:new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})});
-  document.getElementById('journal-text').value='';
-  updateCharCount();
-  renderEntries();
-}
-function renderEntries(){
-  const wrap=document.getElementById('saved-entries');
-  if(!entries.length){ wrap.innerHTML=''; return; }
-  wrap.innerHTML='<div style="font-size:13px;font-weight:500;color:var(--rose-deep);margin-bottom:12px">Saved entries</div>'+
-    entries.map(e=>`<div style="background:var(--rose-pale);border:1px solid var(--rose-light);border-radius:12px;padding:14px 16px;margin-bottom:10px">
-      <div style="font-size:11px;color:var(--text-soft);margin-bottom:6px">${e.date}</div>
-      <div style="font-size:13px;line-height:1.6;color:var(--text)">${e.text}</div>
-    </div>`).join('');
-}
-
-// --- scroll reveal ---
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-},{threshold:0.12});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-// --- progress bar animate on load ---
-setTimeout(()=>{
-  ['e','m','c'].forEach(k=>{
-    const input = document.querySelector(`input[oninput="updateBar('${k}',this.value)"]`);
-    if(input) updateBar(k, input.value);
-  });
-},600);
 </script>
+
 </body>
 </html>
