@@ -2,370 +2,455 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>I'm Sorry 🌷</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Move.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --pink: #ffb5c5;
-    --deep-pink: #ff7aa2;
-    --cream: #fff7f3;
-    --lavender: #d9c8f5;
-    --text: #5b3b4d;
+    --bg: #1b1720;
+    --bg-soft: #24202c;
+    --cream: #f4ead9;
+    --pink: #ef5da8;
+    --gold: #e8b23c;
+    --red: #d64545;
+    --ink: #201c26;
+    --line: rgba(244,234,217,0.14);
   }
-  *{box-sizing:border-box;}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
   body{
-    margin:0;
-    min-height:100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, var(--cream), var(--pink) 60%, var(--lavender));
-    background-size: 400% 400%;
-    animation: bgshift 18s ease infinite;
-    color: var(--text);
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Poppins',sans-serif;
     overflow-x:hidden;
-    padding: 20px;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(239,93,168,0.10), transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(232,178,60,0.08), transparent 40%);
   }
-  @keyframes bgshift{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-  }
+  .display{font-family:'Bebas Neue', sans-serif; letter-spacing:2px;}
+  .mono{font-family:'Space Mono', monospace;}
+  section{padding:90px 20px; max-width:900px; margin:0 auto; position:relative;}
 
-  .hearts{
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    pointer-events:none;
-    z-index:0;
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:40px 20px;
   }
-  .heart{
-    position:absolute;
-    bottom:-50px;
-    font-size: 22px;
-    opacity:0.8;
-    animation: floatUp linear infinite;
-    user-select:none;
+  .eyebrow{
+    font-family:'Space Mono',monospace; font-size:13px; letter-spacing:4px;
+    color:var(--gold); text-transform:uppercase; margin-bottom:18px;
+    border:1px solid var(--gold); padding:6px 16px; border-radius:30px; opacity:0.9;
   }
-  @keyframes floatUp{
-    0%{ transform: translateY(0) rotate(0deg); opacity:0.9;}
-    100%{ transform: translateY(-110vh) rotate(360deg); opacity:0;}
+  .hero h1{
+    font-size:clamp(64px, 16vw, 150px);
+    line-height:0.85;
+    color:var(--cream);
+    text-shadow: 6px 6px 0 var(--pink);
   }
+  .hero h1 span{color:var(--pink); text-shadow:6px 6px 0 var(--gold);}
+  .hero p{
+    margin-top:26px; font-size:17px; max-width:480px; color:var(--cream); opacity:0.75;
+  }
+  .scroll-hint{
+    margin-top:60px; font-family:'Space Mono',monospace; font-size:12px;
+    letter-spacing:2px; opacity:0.5; animation:bob 2s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
 
-  .card{
+  /* ---------- THE NOTE ---------- */
+  .note-wrap{display:flex; justify-content:center;}
+  .note{
+    background:var(--cream);
+    color:var(--ink);
+    max-width:560px;
+    width:100%;
+    padding:44px 40px;
+    border-radius:4px;
     position:relative;
-    z-index:1;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(6px);
-    border-radius: 28px;
-    max-width: 560px;
-    width:100%;
-    padding: 36px 32px 28px;
-    box-shadow: 0 20px 50px rgba(255,122,162,0.35);
-    text-align:center;
-    transition: transform 0.4s ease;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    transform:rotate(-1.2deg);
+  }
+  .note::before{
+    content:'';
+    position:absolute; top:-14px; left:38px;
+    width:60px; height:26px;
+    background:rgba(232,178,60,0.85);
+    transform:rotate(-4deg);
+    box-shadow:0 4px 8px rgba(0,0,0,0.25);
+  }
+  .note h2{font-family:'Bebas Neue'; font-size:34px; letter-spacing:1px; margin-bottom:16px; color:var(--red);}
+  .note p{font-size:15.5px; line-height:1.75; margin-bottom:14px;}
+  .note .sign{font-family:'Space Mono'; font-size:13px; opacity:0.6; margin-top:18px;}
+
+  /* ---------- SECTION LABEL ---------- */
+  .label{
+    text-align:center; font-family:'Space Mono'; font-size:12px; letter-spacing:4px;
+    text-transform:uppercase; color:var(--gold); margin-bottom:14px;
+  }
+  .headline{
+    text-align:center; font-family:'Bebas Neue'; font-size:clamp(38px,7vw,64px);
+    margin-bottom:50px; letter-spacing:1px;
   }
 
-  h1{
-    font-size: 1.9rem;
-    margin: 0 0 6px;
-    color: var(--deep-pink);
+  /* ---------- TICKETS ---------- */
+  .tickets{
+    display:flex; gap:28px; flex-wrap:wrap; justify-content:center;
   }
-  .subtitle{
-    font-size:0.95rem;
-    opacity:0.75;
-    margin-bottom: 18px;
+  .ticket{
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    border-radius:10px;
+    width:320px;
+    overflow:hidden;
+    position:relative;
+    transition:transform 0.35s ease, box-shadow 0.35s ease;
   }
-
-  .bear{
-    font-size: 70px;
-    display:inline-block;
-    animation: wiggle 2.4s ease-in-out infinite;
+  .ticket:hover{transform:translateY(-8px) rotate(-1deg); box-shadow:0 18px 40px rgba(0,0,0,0.4);}
+  .ticket-top{padding:26px 24px 18px; border-bottom:2px dashed var(--line);}
+  .ticket-tag{font-family:'Space Mono'; font-size:11px; letter-spacing:3px; color:var(--pink); text-transform:uppercase;}
+  .ticket-top h3{font-family:'Bebas Neue'; font-size:30px; margin-top:8px; line-height:1.05;}
+  .ticket-top p{font-size:13.5px; opacity:0.7; margin-top:8px; line-height:1.5;}
+  .ticket-bottom{
+    padding:16px 24px; display:flex; justify-content:space-between; align-items:center;
+    font-family:'Space Mono'; font-size:11px; letter-spacing:1px; opacity:0.65;
   }
-  @keyframes wiggle{
-    0%,100%{ transform: rotate(-4deg);}
-    50%{ transform: rotate(4deg);}
+  .ticket-bottom .badge{
+    background:var(--gold); color:var(--ink); padding:4px 10px; border-radius:20px;
+    font-weight:700; opacity:1;
   }
-
-  #screen1, #screen2, #screen3{
-    transition: opacity 0.4s ease;
+  .ticket::after{
+    content:''; position:absolute; left:-10px; top:118px;
+    width:20px; height:20px; background:var(--bg); border-radius:50%;
   }
-  .hidden{
-    display:none;
-  }
-
-  .letter{
-    text-align:left;
-    background: #fffaf6;
-    border: 1px dashed var(--deep-pink);
-    border-radius: 16px;
-    padding: 18px 20px;
-    margin: 16px 0;
-    font-size: 0.98rem;
-    line-height: 1.6;
-    white-space: pre-wrap;
+  .ticket::before{
+    content:''; position:absolute; right:-10px; top:118px;
+    width:20px; height:20px; background:var(--bg); border-radius:50%;
   }
 
-  button{
-    background: var(--deep-pink);
-    color:white;
-    border:none;
-    padding: 12px 26px;
-    border-radius: 30px;
-    font-size: 1rem;
-    cursor:pointer;
-    margin: 6px 8px;
-    box-shadow: 0 6px 14px rgba(255,122,162,0.4);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  /* ---------- SOUNDTRACK / RECORDS ---------- */
+  .records{display:flex; gap:40px; justify-content:center; flex-wrap:wrap; margin-top:10px;}
+  .record{text-align:center;}
+  .vinyl{
+    width:130px; height:130px; border-radius:50%;
+    background: repeating-radial-gradient(circle, #0c0a0e 0px, #0c0a0e 2px, #1c1820 3px, #1c1820 4px);
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto 14px;
+    animation:spin 6s linear infinite;
+    box-shadow:0 10px 24px rgba(0,0,0,0.5);
+    border:2px solid rgba(244,234,217,0.08);
   }
-  button:hover{
-    transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 10px 18px rgba(255,122,162,0.5);
+  .vinyl .label-center{
+    width:46px; height:46px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Bebas Neue'; font-size:11px; text-align:center; color:var(--ink);
   }
-  button:active{
-    transform: translateY(0) scale(0.97);
+  .vinyl.smiths .label-center{background:var(--pink);}
+  .vinyl.am .label-center{background:var(--red);}
+  @keyframes spin{from{transform:rotate(0);} to{transform:rotate(360deg);}}
+  .record p{font-family:'Space Mono'; font-size:12px; opacity:0.7;}
+  .record p.artist{font-family:'Poppins'; font-weight:600; font-size:14.5px; opacity:1; margin-bottom:4px;}
+
+  /* ---------- CHESS + ROBLOX ROW ---------- */
+  .duo{display:flex; gap:28px; flex-wrap:wrap; justify-content:center;}
+  .duo-card{
+    background:var(--bg-soft); border:1px solid var(--line); border-radius:14px;
+    width:320px; padding:28px; text-align:center;
+  }
+  .board{
+    width:140px; height:140px; margin:16px auto 18px;
+    display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(4,1fr);
+    border-radius:8px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.4);
+  }
+  .sq{width:100%; height:100%;}
+  .sq.d{background:var(--ink);}
+  .sq.l{background:var(--cream);}
+  .board .king{
+    grid-column:2; grid-row:2;
+    display:flex; align-items:center; justify-content:center;
+    font-size:26px; animation:pulse 1.8s ease-in-out infinite;
+  }
+  .board .queen{
+    grid-column:3; grid-row:3;
+    display:flex; align-items:center; justify-content:center;
+    font-size:24px;
+  }
+  @keyframes pulse{0%,100%{transform:scale(1);} 50%{transform:scale(1.18);}}
+  .blocks{
+    display:flex; gap:8px; justify-content:center; margin:16px 0 18px;
+  }
+  .blocks span{
+    width:26px; height:26px; border-radius:5px; display:inline-block;
+    animation:float 2.4s ease-in-out infinite;
+  }
+  .blocks span:nth-child(1){background:var(--pink); animation-delay:0s;}
+  .blocks span:nth-child(2){background:var(--gold); animation-delay:0.2s;}
+  .blocks span:nth-child(3){background:var(--red); animation-delay:0.4s;}
+  .blocks span:nth-child(4){background:var(--cream); animation-delay:0.6s;}
+  @keyframes float{0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);}}
+  .duo-card h3{font-family:'Bebas Neue'; font-size:26px; margin-bottom:8px; letter-spacing:1px;}
+  .duo-card p{font-size:13.5px; opacity:0.7; line-height:1.6;}
+
+  /* ---------- FINALE ---------- */
+  .finale{
+    text-align:center; padding-bottom:140px;
+  }
+  .finale h2{
+    font-family:'Bebas Neue'; font-size:clamp(34px,8vw,58px); margin-bottom:10px;
+  }
+  .finale .sub{font-size:14.5px; opacity:0.65; margin-bottom:50px; font-family:'Space Mono';}
+  .btn-row{
+    position:relative; display:flex; gap:22px; justify-content:center; align-items:center;
+    flex-wrap:wrap; min-height:120px;
+  }
+  .yes-btn, .no-btn{
+    font-family:'Bebas Neue'; font-size:22px; letter-spacing:1px;
+    padding:18px 42px; border-radius:50px; border:none; cursor:pointer;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .yes-btn{
+    background:var(--pink); color:var(--ink);
+    box-shadow:0 10px 26px rgba(239,93,168,0.4);
+  }
+  .yes-btn:hover{transform:scale(1.06);}
+  .no-btn{
+    background:transparent; color:var(--cream); border:1.5px solid var(--line);
+    position:relative;
+  }
+  #yesSize{transition:font-size 0.25s ease, padding 0.25s ease;}
+
+  .reveal{
+    display:none; margin-top:50px; animation:fadeIn 0.6s ease forwards;
+  }
+  .reveal.show{display:block;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+  .reveal-card{
+    background:var(--cream); color:var(--ink); max-width:420px; margin:0 auto;
+    border-radius:14px; padding:34px 30px; box-shadow:0 20px 50px rgba(0,0,0,0.4);
+    transform:rotate(0.6deg);
+  }
+  .reveal-card h3{font-family:'Bebas Neue'; font-size:30px; color:var(--red); margin-bottom:10px;}
+  .reveal-card p{font-size:14.5px; line-height:1.7; margin-bottom:6px;}
+
+  footer{
+    text-align:center; padding:30px; font-family:'Space Mono'; font-size:11.5px;
+    opacity:0.4; letter-spacing:1px;
   }
 
-  .secondary{
-    background: transparent;
-    color: var(--deep-pink);
-    border: 2px solid var(--deep-pink);
-    box-shadow:none;
-  }
+  canvas#confetti{position:fixed; inset:0; pointer-events:none; z-index:50;}
 
-  .quiz-options{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    margin-top: 16px;
-  }
-  .quiz-options button{
-    width:100%;
-    background: var(--lavender);
-    color: var(--text);
-    box-shadow:none;
-  }
-  .quiz-options button:hover{
-    background: var(--deep-pink);
-    color:white;
-  }
-
-  .feedback{
-    margin-top:10px;
-    font-size:0.9rem;
-    min-height: 20px;
-    font-style: italic;
-    color: var(--deep-pink);
-  }
-
-  .progress{
-    font-size:0.8rem;
-    opacity:0.6;
-    margin-bottom: 6px;
-  }
-
-  #noBtn{
-    transition: transform 0.15s ease;
-  }
-
-  .final-emoji{
-    font-size: 60px;
-    animation: pop 0.5s ease;
-  }
-  @keyframes pop{
-    0%{ transform: scale(0); }
-    70%{ transform: scale(1.2); }
-    100%{ transform: scale(1); }
-  }
-
-  .confetti{
-    position: fixed;
-    width: 10px; height: 10px;
-    top: -10px;
-    border-radius: 2px;
-    z-index: 5;
-    animation: fall linear forwards;
-  }
-  @keyframes fall{
-    to{ transform: translateY(110vh) rotate(720deg); opacity: 0.6; }
-  }
-
-  textarea{
-    width:100%;
-    border-radius:12px;
-    border:1px solid var(--lavender);
-    padding:10px;
-    font-family:inherit;
-    resize:none;
-    min-height: 70px;
-  }
-
-  small{
-    display:block;
-    margin-top:18px;
-    opacity:0.5;
-    font-size:0.75rem;
+  @media (max-width:480px){
+    .note{padding:32px 24px;}
+    section{padding:70px 16px;}
   }
 </style>
 </head>
 <body>
 
-<div class="hearts" id="hearts"></div>
+<canvas id="confetti"></canvas>
 
-<div class="card" id="card">
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">an apology, formally submitted</div>
+  <h1>I'M<br><span>SORRY.</span></h1>
+  <p>Not the kind you skim past. The kind where I actually mean it — and I built you a whole website to prove I'm not just saying it.</p>
+  <div class="scroll-hint">↓ keep going, there's a plan ↓</div>
+</section>
 
-  <!-- SCREEN 1: the letter -->
-  <div id="screen1">
-    <div class="bear">🐻</div>
-    <h1>I'm really sorry.</h1>
-    <div class="subtitle">I made you something instead of just saying it.</div>
-    <div class="letter" id="letterText">Hey you,
-
-I know I messed up, and I know words alone don't always fix things — but I needed you to know that I see it, I'm sorry, and I'm not okay with you being hurt because of me.
-
-You mean a lot to me, more than I show sometimes. I'm working on being better — more thoughtful, more present, less careless.
-
-Can we talk this through? I'd really like to make it right.
-
-— Me 💛</div>
-    <button onclick="goTo(2)">Keep going →</button>
-  </div>
-
-  <!-- SCREEN 2: tiny quiz -->
-  <div id="screen2" class="hidden">
-    <h1>Quick quiz 🧐</h1>
-    <div class="progress" id="progress">Question 1 of 3</div>
-    <div id="quizBox"></div>
-    <div class="feedback" id="quizFeedback"></div>
-  </div>
-
-  <!-- SCREEN 3: final ask -->
-  <div id="screen3" class="hidden">
-    <div class="final-emoji">🌹</div>
-    <h1>Will you forgive me?</h1>
-    <div class="subtitle">No pressure. Just hoping. 🥺</div>
-    <div>
-      <button id="yesBtn" onclick="sayYes()">Yes, I forgive you 💕</button>
-      <button id="noBtn" class="secondary" onclick="dodgeNo()">Not yet</button>
-    </div>
-    <div id="afterYes" class="hidden">
-      <p style="margin-top:18px;">Thank you. I won't take it for granted. 🤍</p>
-      <textarea id="noteBack" placeholder="(optional) write something back to me..."></textarea>
+<!-- NOTE -->
+<section>
+  <div class="note-wrap">
+    <div class="note">
+      <h2>Okay, for real —</h2>
+      <p>I know I messed up, and I'm not going to make excuses for it. You didn't deserve that, and it's been sitting with me since.</p>
+      <p>I'm not asking you to forget it happened. I'm asking for a chance to do better — starting with an evening that's just about us, no mess, no stress, just you and me and a very questionable rom-com choice.</p>
+      <p>I miss you. I miss us being silly together. So here's my case, laid out properly.</p>
+      <p class="sign">— with all my effort (and slight nerves), me</p>
     </div>
   </div>
+</section>
 
-  <small>made with care, css, and a little bit of panic</small>
-</div>
+<!-- TICKETS -->
+<section>
+  <div class="label">the itinerary</div>
+  <div class="headline">Two Stops. One Night.</div>
+  <div class="tickets">
+    <div class="ticket">
+      <div class="ticket-top">
+        <div class="ticket-tag">Stop 01 — Movie Date</div>
+        <h3>How to Lose a Guy<br>in 10 Days</h3>
+        <p>Same screen, different couches. I'll count down "3-2-1-play" so we're synced. Popcorn is BYO, sadly.</p>
+      </div>
+      <div class="ticket-bottom">
+        <span>ADM: TWO</span>
+        <span class="badge">SUNDAY</span>
+      </div>
+    </div>
+    <div class="ticket">
+      <div class="ticket-top">
+        <div class="ticket-tag">Stop 02 — After Party</div>
+        <h3>Roblox + Discord<br>Call Open</h3>
+        <p>Straight after credits roll, we hop on call and I get absolutely destroyed by you at whatever we queue into.</p>
+      </div>
+      <div class="ticket-bottom">
+        <span>SERVER: OURS</span>
+        <span class="badge">LOCKED IN</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOUNDTRACK -->
+<section>
+  <div class="label">the soundtrack</div>
+  <div class="headline">Make-Up Playlist</div>
+  <div class="records">
+    <div class="record">
+      <div class="vinyl smiths"><div class="label-center">THE<br>SMITHS</div></div>
+      <p class="artist">The Smiths</p>
+      <p>because it's not a proper apology without a little melodrama</p>
+    </div>
+    <div class="record">
+      <div class="vinyl am"><div class="label-center">AM</div></div>
+      <p class="artist">Arctic Monkeys</p>
+      <p>for when we're back to being fine</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHESS + ROBLOX -->
+<section>
+  <div class="label">your move</div>
+  <div class="headline">Chess Brain, Roblox Heart</div>
+  <div class="duo">
+    <div class="duo-card">
+      <h3>♛ Checkmate My Attitude</h3>
+      <div class="board">
+        <div class="sq l"></div><div class="sq d"></div><div class="sq l"></div><div class="sq d"></div>
+        <div class="sq d"></div><div class="king">♚</div><div class="sq d"></div><div class="sq l"></div>
+        <div class="sq l"></div><div class="sq d"></div><div class="queen">♕</div><div class="sq d"></div>
+        <div class="sq d"></div><div class="sq l"></div><div class="sq d"></div><div class="sq l"></div>
+      </div>
+      <p>My king is cornered and it's entirely my own fault. Your move.</p>
+    </div>
+    <div class="duo-card">
+      <h3>▧ Loot Drop: Forgiveness</h3>
+      <div class="blocks"><span></span><span></span><span></span><span></span></div>
+      <p>Rare item unlocked: one (1) apologetic boyfriend, fully redeemable tonight on Discord.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINALE -->
+<section class="finale">
+  <div class="label">last question</div>
+  <h2>Will you forgive me &amp; watch<br>the movie with me tonight?</h2>
+  <p class="sub">choose wisely, the "no" button has trust issues</p>
+  <div class="btn-row">
+    <button class="yes-btn" id="yesSize" onclick="sayYes()">yes, okay 🖤</button>
+    <button class="no-btn" id="noBtn">no</button>
+  </div>
+
+  <div class="reveal" id="reveal">
+    <div class="reveal-card">
+      <h3>It's a date. 🎬</h3>
+      <p>Send me the time that works and I'll queue up the movie.</p>
+      <p>After that — Discord call, Roblox loaded, and zero apologies left to make.</p>
+      <p style="margin-top:14px; font-family:'Space Mono'; font-size:12px; opacity:0.6;">thank you for forgiving me. i won't waste it.</p>
+    </div>
+  </div>
+</section>
+
+<footer>made with too much effort, exactly the right amount of love</footer>
 
 <script>
-// floating hearts background
-const heartsContainer = document.getElementById('hearts');
-const heartEmojis = ['💗','💕','🌸','💖','🌷'];
-for(let i=0;i<22;i++){
-  const h = document.createElement('div');
-  h.className='heart';
-  h.textContent = heartEmojis[Math.floor(Math.random()*heartEmojis.length)];
-  h.style.left = Math.random()*100+'vw';
-  h.style.animationDuration = (8+Math.random()*10)+'s';
-  h.style.animationDelay = (Math.random()*10)+'s';
-  h.style.fontSize = (16+Math.random()*16)+'px';
-  heartsContainer.appendChild(h);
-}
+  // No button dodges the cursor, Yes button grows a little each miss-click
+  const noBtn = document.getElementById('noBtn');
+  const yesBtn = document.getElementById('yesSize');
+  const btnRow = document.querySelector('.btn-row');
+  let dodgeCount = 0;
+  let yesSize = 22;
 
-function goTo(n){
-  document.getElementById('screen1').classList.add('hidden');
-  document.getElementById('screen2').classList.add('hidden');
-  document.getElementById('screen3').classList.add('hidden');
-  document.getElementById('screen'+n).classList.remove('hidden');
-  if(n===2) startQuiz();
-}
+  function moveNo(){
+    const rowRect = btnRow.getBoundingClientRect();
+    const btnRect = noBtn.getBoundingClientRect();
+    const maxX = Math.max(rowRect.width - btnRect.width, 40);
+    const maxY = Math.max(rowRect.height - btnRect.height, 40);
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
 
-// tiny playful quiz about "us" — generic enough, can be edited
-const questions = [
-  {
-    q: "How sorry am I, really?",
-    options: ["A little", "Pretty sorry", "Extremely, deeply sorry"],
-    correct: 2,
-    feedback: "Correct. Extremely. Deeply. 😅"
-  },
-  {
-    q: "What do I want most right now?",
-    options: ["To be right", "To talk it out with you", "To avoid the topic"],
-    correct: 1,
-    feedback: "Yes — just to talk, for real."
-  },
-  {
-    q: "What happens after this quiz?",
-    options: ["Nothing, the end", "I keep trying to do better", "I forget about it"],
-    correct: 1,
-    feedback: "That's the plan. I keep trying."
+    dodgeCount++;
+    yesSize = Math.min(yesSize + 3, 46);
+    yesBtn.style.fontSize = yesSize + 'px';
+    yesBtn.style.padding = (18 + dodgeCount) + 'px ' + (42 + dodgeCount * 2) + 'px';
+
+    const taunts = ["nice try","nope","try again","not happening","she's typing 'yes' anyway","almost!","keep clicking, see what happens"];
+    noBtn.textContent = taunts[Math.min(dodgeCount - 1, taunts.length - 1)];
   }
-];
-let qIndex = 0;
 
-function startQuiz(){
-  qIndex = 0;
-  renderQuestion();
-}
+  noBtn.addEventListener('mouseenter', moveNo);
+  noBtn.addEventListener('click', function(e){ e.preventDefault(); moveNo(); });
+  noBtn.addEventListener('touchstart', function(e){ e.preventDefault(); moveNo(); });
 
-function renderQuestion(){
-  const box = document.getElementById('quizBox');
-  const progress = document.getElementById('progress');
-  document.getElementById('quizFeedback').textContent = '';
-  if(qIndex >= questions.length){
-    progress.textContent = '';
-    box.innerHTML = '<p>All done. 🌟</p><button onclick="goTo(3)">Continue →</button>';
-    return;
+  function sayYes(){
+    document.getElementById('reveal').classList.add('show');
+    document.querySelector('.btn-row').style.opacity = '0.4';
+    launchConfetti();
+    document.getElementById('reveal').scrollIntoView({behavior:'smooth', block:'center'});
   }
-  progress.textContent = `Question ${qIndex+1} of ${questions.length}`;
-  const q = questions[qIndex];
-  box.innerHTML = `<p style="font-weight:600;margin-bottom:6px;">${q.q}</p>
-    <div class="quiz-options">
-      ${q.options.map((opt,i)=>`<button onclick="answer(${i})">${opt}</button>`).join('')}
-    </div>`;
-}
 
-function answer(i){
-  const q = questions[qIndex];
-  const fb = document.getElementById('quizFeedback');
-  if(i === q.correct){
-    fb.textContent = q.feedback;
-    qIndex++;
-    setTimeout(renderQuestion, 900);
-  } else {
-    fb.textContent = "Hmm, try again? 🙂";
+  // lightweight confetti
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const colors = ['#ef5da8','#e8b23c','#d64545','#f4ead9'];
+  let particles = [];
+
+  function launchConfetti(){
+    particles = [];
+    for(let i=0;i<140;i++){
+      particles.push({
+        x: Math.random()*canvas.width,
+        y: -20 - Math.random()*canvas.height*0.3,
+        r: 4 + Math.random()*5,
+        c: colors[Math.floor(Math.random()*colors.length)],
+        vy: 2 + Math.random()*3,
+        vx: -1.5 + Math.random()*3,
+        rot: Math.random()*360,
+        vr: -6 + Math.random()*12
+      });
+    }
+    requestAnimationFrame(animateConfetti);
   }
-}
 
-// "not yet" button dodges the cursor a little, playfully
-function dodgeNo(){
-  const btn = document.getElementById('noBtn');
-  const x = (Math.random()-0.5)*160;
-  const y = (Math.random()-0.5)*60;
-  btn.style.transform = `translate(${x}px, ${y}px)`;
-  setTimeout(()=>{ btn.style.transform = 'translate(0,0)'; }, 600);
-}
-
-function sayYes(){
-  document.getElementById('afterYes').classList.remove('hidden');
-  document.getElementById('yesBtn').style.display = 'none';
-  document.getElementById('noBtn').style.display = 'none';
-  launchConfetti();
-}
-
-function launchConfetti(){
-  const colors = ['#ff7aa2','#ffb5c5','#d9c8f5','#fff1a8','#a8e6cf'];
-  for(let i=0;i<60;i++){
-    const c = document.createElement('div');
-    c.className='confetti';
-    c.style.left = Math.random()*100+'vw';
-    c.style.background = colors[Math.floor(Math.random()*colors.length)];
-    c.style.animationDuration = (2+Math.random()*2)+'s';
-    c.style.animationDelay = (Math.random()*0.5)+'s';
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(), 5000);
+  let start = null;
+  function animateConfetti(ts){
+    if(!start) start = ts;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let alive = false;
+    particles.forEach(p=>{
+      p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+      if(p.y < canvas.height + 20) alive = true;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot * Math.PI/180);
+      ctx.fillStyle = p.c;
+      ctx.fillRect(-p.r/2, -p.r/2, p.r, p.r*0.6);
+      ctx.restore();
+    });
+    if(alive && ts - start < 6000){
+      requestAnimationFrame(animateConfetti);
+    } else {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+    }
   }
-}
 </script>
 
 </body>
